@@ -8,17 +8,17 @@ from langchain.chains import RetrievalQA
 
 categories = {
     "Fitness": ["https://cymbiotika.com/collections/fitness-supplements"],
-    # "Energy": ["https://cymbiotika.com/collections/energy-supplements"],
-    # "Immunity": ["https://cymbiotika.com/collections/immunity-supplements"],
-    # "Skin Health": ["https://cymbiotika.com/collections/skin-health-supplements"],
-    # "Detox": ["https://cymbiotika.com/collections/detox-supplements"],
-    # "Brain Health": ["https://cymbiotika.com/collections/brain-health-supplements"],
-    # "Gut Health": ["https://cymbiotika.com/collections/gut-health-supplements"],
-    # "Healthy-Aging": ["https://cymbiotika.com/collections/healthy-aging-supplements"],
-    # "Stress Relief": ["https://cymbiotika.com/collections/stress-relief-supplements"],
-    # "Recovery": ["https://cymbiotika.com/collections/recovery-supplements"],
-    # "Heart Health": ["https://cymbiotika.com/collections/heart-health-supplements"],
-    # "Joint and Bone": ["https://cymbiotika.com/collections/joint-and-bone-supplements"]
+    "Energy": ["https://cymbiotika.com/collections/energy-supplements"],
+    "Immunity": ["https://cymbiotika.com/collections/immunity-supplements"],
+    "Skin Health": ["https://cymbiotika.com/collections/skin-health-supplements"],
+    "Detox": ["https://cymbiotika.com/collections/detox-supplements"],
+    "Brain Health": ["https://cymbiotika.com/collections/brain-health-supplements"],
+    "Gut Health": ["https://cymbiotika.com/collections/gut-health-supplements"],
+    "Healthy-Aging": ["https://cymbiotika.com/collections/healthy-aging-supplements"],
+    "Stress Relief": ["https://cymbiotika.com/collections/stress-relief-supplements"],
+    "Recovery": ["https://cymbiotika.com/collections/recovery-supplements"],
+    "Heart Health": ["https://cymbiotika.com/collections/heart-health-supplements"],
+    "Joint and Bone": ["https://cymbiotika.com/collections/joint-and-bone-supplements"]
 }
 
 all_docs = []
