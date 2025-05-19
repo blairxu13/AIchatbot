@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(true);
@@ -6,6 +6,13 @@ export default function ChatBot() {
   const [input, setInput] = useState("");
   const [mode, setMode] = useState("");
   const [categories, setCategories] = useState("");
+  const messagesEndRef = useRef(null);
+
+useEffect(() => {
+  if (messagesEndRef.current) {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }
+}, [messages]);
 
   useEffect(() => {
     const welcomeMessage = { sender: "bot", text: "Welcome!" };
@@ -50,31 +57,34 @@ export default function ChatBot() {
   
     const userMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMessage]);
-  
     setInput("");
   
-    //fetch response
     try {
       const response = await fetch("http://localhost:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: input }),
-        category: categories || ""
+        body: JSON.stringify({
+          question: input,
+          category: categories || "",
+          mode: mode || "chat"
+        }),
       });
   
       const data = await response.json();
-      const botMessage = { sender: "bot", text: data.answer };
-  
+      const botMessage = {
+        sender: "bot",
+        text: data.answer || "⚠️ Sorry, no response received."
+      };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
+      console.error("Fetch error:", error);
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "Error: Could not reach server." },
+        { sender: "bot", text: "Error: Could not reach server." }
       ]);
     }
   };
   
-
 
 
   const handleSelection = (value) => {
@@ -82,7 +92,7 @@ export default function ChatBot() {
     setMessages((prev) => [
       ...prev,
       { sender: "user", text: value },
-      ...(mode === "product" ? [optionsMsg] : [
+      ...(value === "product" ? [optionsMsg] : [
         { sender: "bot", text: "Cool! Let me connect you with support..." }
       ])
     ]);
@@ -266,6 +276,8 @@ export default function ChatBot() {
     </div>
   );
 })}
+
+<div ref={messagesEndRef} />
 
 
 

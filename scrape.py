@@ -49,7 +49,7 @@ def get_all_product_links(category_url):
 
 for categoryName, urls in categories.items():
     for url in urls:
-        # print(f"🔎 Scraping category: {categoryName}")
+        
         product_links = get_all_product_links(url)
         loader = PlaywrightURLLoader(urls=product_links)
         docs = loader.load()
